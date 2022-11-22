@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Noun } from '../../typings';
+import Link from 'next/link';
 
 const url = 'https://edwardtanguay.vercel.app/share/germanNouns.json';
 
@@ -11,7 +12,11 @@ async function NounsList() {
 			{nouns.map((noun: Noun) => {
 				return (
 					<div className="noun" key={noun.singular}>
-						<div className="singular">{noun.article} {noun.singular} <span className="italic text-gray-400">({noun.plural})</span></div>
+						<div className="singular">
+							<Link href={`/nouns/${noun.singular}`}>
+								{noun.singular}
+							</Link>
+						</div>
 					</div>
 				);
 			})}
